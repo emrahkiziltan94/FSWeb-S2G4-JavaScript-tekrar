@@ -154,7 +154,7 @@ for(let i = 0;i<sayilar.length;i++){
     tekrarlar[sayilar[i]]++;
   }
 }
-
+console.log("emrah");
 tekraredensayilar = [];
 for(const sayi in tekrarlar){
   if(tekrarlar[sayi]>1){

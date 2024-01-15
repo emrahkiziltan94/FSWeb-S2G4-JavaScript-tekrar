@@ -39,6 +39,7 @@ const sayilar = [
 function KareninAlani(kenaruzunlugu) {
   return kenaruzunlugu * kenaruzunlugu;
 }
+console.log("Karenin Alanı: ",KareninAlani(2));
 
 /* (Oto test yok) Yukarıdaki KareninAlani fonksiyonunu kenar uzunluğu = 10 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -50,11 +51,13 @@ function KareninAlani(kenaruzunlugu) {
 	4. Hesaplanan çemberin çevresi döndürülecektir.
 */
 
-function CemberinCevresi(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinCevresi(radius) {
+  return radius*pi*2
 }
 
+
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
+console.log("çemberin çevresi: ",CemberinCevresi(5));
 
 /* 	GÖREV 2:  
 - CemberinAlani fonksiyonunu kullanarak aşağıdaki yönergeleri uygulayın:
@@ -64,11 +67,12 @@ function CemberinCevresi(/* kodlar buraya */) {
 	4. Hesaplanan çemberin alanı döndürülecektir.
 */
 
-function CemberinAlani(/* kodlar buraya */) {
-  /* kodlar buraya */
+function CemberinAlani(radius,pi) {
+   return pi*Math.pow(radius,2);
 }
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
+console.log("Cemberin Alanı: ",CemberinAlani(15,pi));
 
 /* 	GÖREV 3:
 	- Sayfanın en üstünde global değişken olarak tanımlanmış bir sayilar dizisi bulunmaktadır. Bu dizi içinde 0 ile 1000 arasında rasgele oluşturulmuş tam sayılar ve ondalıklı sayılar bulunmaktadır. Bu diziyi kullanarak aşağıdakileri uygulayın:
@@ -89,7 +93,7 @@ function CemberinAlani(/* kodlar buraya */) {
 
 /*  (oto test yok) sayilar dizisi içinde kaç adet sayı olduğunu konsola yazdırın */
 
-let ucetambolunenler,
+let ucetambolunenler=[],
   enkucuk,
   enbuyuk,
   ucebolunenlerintoplami,
@@ -98,36 +102,75 @@ let ucetambolunenler,
   tekraredensayilar;
 
 // 3a çözümü
+enkucuk = sayilar[0];
+enbuyuk = sayilar[0];
+for(let i = 0; i<sayilar.length; i++){
 
-/* kodlar buraya */
+  if(sayilar[i]<enkucuk){
+    enkucuk = sayilar[i];
+  }
 
+  if(sayilar[i]>enbuyuk){
+    enbuyuk = sayilar[i];
+  }
+}
+
+console.log("enkucuk: ", enkucuk);
+console.log("enbuyuk: ",enbuyuk);
 // 3b çözümü:
 
-/* kodlar buraya */
+sayilar.forEach((sayi)=>{
+  
+  if(sayi%3===0){
+    ucetambolunenler.push(sayi);
+  }
+})
+
+console.log("3 e bölünenler: ",ucetambolunenler);
 
 // 3c çözümü:
 
-/* kodlar buraya */
 
+ucebolunenlerintoplami = ucetambolunenler.reduce((toplam,sayi)=> toplam+sayi ,0);
+console.log("ucebolunenlerintoplami: ",ucebolunenlerintoplami);
 // 3d çözümü
 
-/* kodlar buraya */
+besyuzdenkucuksayilar = sayilar.filter((sayi)=> sayi< 500);
+console.log("besyuzdenkucuksayilar: ",besyuzdenkucuksayilar);
 
 // 3e çözümü
 
-/* kodlar buraya */
+siralisayilar = besyuzdenkucuksayilar.slice().sort((a,b)=> a-b);
+console.log("siralisayilar: ",siralisayilar);
 
 // 3f çözümü
 
-/* kodlar buraya */
+const tekrarlar={};
+for(let i = 0;i<sayilar.length;i++){
+  if(tekrarlar[sayilar[i]]===undefined){
+    tekrarlar[sayilar[i]] = 1;
+  }
+  else{
+    tekrarlar[sayilar[i]]++;
+  }
+}
 
+tekraredensayilar = [];
+for(const sayi in tekrarlar){
+  if(tekrarlar[sayi]>1){
+    const tekrarString = `${sayi} sayısı ${tekrarlar[sayi]} kere tekrar edilmiştir.`;
+    tekraredensayilar.push(tekrarString);
+  }
+}
+console.log("tekraredensayilar: ",tekraredensayilar);
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
-
+ 
 function sa() {
   console.log("Kodlar çalışıyor");
   return "as";
 }
 sa();
+
 module.exports = {
   sa,
   CemberinCevresi,
